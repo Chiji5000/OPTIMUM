@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Nav from "./nav/Nav.jsx";
 import Home from "./Home page/Home.jsx";
 import About from "./about/About.jsx";
@@ -11,10 +12,29 @@ import Item from "./shop/item/item.jsx";
 import Cart from "./shop/item/cart/cart.jsx";
 import CheckoutDetails from "./shop/item/cart/details/Details.jsx";
 import Footer from "./footer/Footer.jsx";
+import Preloader from "./preloader/preloader.jsx";
+
+// Route-based preloader wrapper
+const RouteChangeTracker = () => {
+  const [routeLoading, setRouteLoading] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setRouteLoading(true);
+    const timer = setTimeout(() => {
+      setRouteLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  return <Preloader isLoading={routeLoading} />;
+};
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
+      <RouteChangeTracker />
       <Nav />
       <main>
         <Routes>
@@ -31,7 +51,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 
