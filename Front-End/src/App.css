@@ -1,0 +1,316 @@
+/* ==========================================================================
+   OPTIMUM — Brand Style Guide / CSS Starter
+   Exchange. Experience. Expand.
+   Derived from OPTIMUM Brand Identity & Visual Identity docs
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. FONTS
+   Primary: Poppins (Bold) — headlines, brand moments, confident statements
+   Secondary: Inter (Regular) — body copy, UI text, readability workhorse
+   Accent: Montserrat (Medium) — labels, eyebrows, nav, small caps treatments
+   -------------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&family=Montserrat:wght@500;600&display=swap");
+
+/* --------------------------------------------------------------------------
+   2. COLOR TOKENS
+   Base hexes are locked from the brand doc. Tints/shades are derived for
+   hover states, borders, subtle backgrounds, etc. so you're never guessing.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand core — do not alter these five, they're the locked identity */
+  --color-deep-blue: #003366; /* Trust, reliability, professionalism */
+  --color-emerald-green: #00a86b; /* Growth, prosperity, expansion */
+  --color-golden-orange: #ffa500; /* Energy, innovation, achievement */
+  --color-cool-gray: #f4f4f4; /* Neutral background */
+  --color-charcoal: #222222; /* Text */
+
+  /* Deep Blue scale */
+  --color-blue-900: #001a33;
+  --color-blue-700: #00264d;
+  --color-blue-500: var(--color-deep-blue);
+  --color-blue-300: #336699;
+  --color-blue-100: #cce0f0;
+  --color-blue-050: #ebf2fa;
+
+  /* Emerald Green scale */
+  --color-green-900: #006b45;
+  --color-green-700: #008c5a;
+  --color-green-500: var(--color-emerald-green);
+  --color-green-300: #4dc495;
+  --color-green-100: #cceee0;
+  --color-green-050: #e8faf1;
+
+  /* Golden Orange scale */
+  --color-orange-900: #cc8400;
+  --color-orange-700: #e69500;
+  --color-orange-500: var(--color-golden-orange);
+  --color-orange-300: #ffc966;
+  --color-orange-100: #ffeacc;
+  --color-orange-050: #fff6e8;
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-gray-050: var(--color-cool-gray);
+  --color-gray-100: #e8e8e8;
+  --color-gray-300: #c7c7c7;
+  --color-gray-500: #8a8a8a;
+  --color-gray-700: #4a4a4a;
+  --color-charcoal-900: var(--color-charcoal);
+
+  /* Semantic / role-based tokens — use these in components, not raw colors */
+  --color-bg: var(--color-white);
+  --color-bg-subtle: var(--color-gray-050);
+  --color-surface: var(--color-white);
+  --color-text-primary: var(--color-charcoal-900);
+  --color-text-secondary: var(--color-gray-700);
+  --color-text-on-dark: var(--color-white);
+
+  --color-brand-primary: var(--color-deep-blue);
+  --color-brand-secondary: var(--color-emerald-green);
+  --color-brand-accent: var(--color-golden-orange);
+
+  --color-link: var(--color-deep-blue);
+  --color-link-hover: var(--color-blue-700);
+
+  --color-success: var(--color-emerald-green);
+  --color-warning: var(--color-golden-orange);
+
+  --color-border: var(--color-gray-100);
+  --color-border-strong: var(--color-gray-300);
+  --color-focus-ring: var(--color-orange-500);
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY TOKENS
+   Voice: "Professional yet warm. Confident yet approachable."
+   Poppins carries weight/confidence; Inter carries warmth/readability;
+   Montserrat carries structure (labels, eyebrows, nav items).
+   -------------------------------------------------------------------------- */
+:root {
+  --font-display: "Poppins", "Segoe UI", sans-serif; /* headlines */
+  --font-body: "Inter", "Segoe UI", sans-serif; /* paragraphs, UI */
+  --font-accent:
+    "Montserrat", "Segoe UI", sans-serif; /* labels, nav, eyebrows */
+
+  /* Type scale — fluid via clamp() so it holds up across breakpoints */
+  --text-xs: 0.75rem; /* 12px — fine print, captions */
+  --text-sm: 0.875rem; /* 14px — meta, labels */
+  --text-base: 1rem; /* 16px — body copy */
+  --text-md: 1.125rem; /* 18px — lead paragraphs */
+  --text-lg: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem); /* 20–24px — card titles */
+  --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem); /* 24–32px — section headers */
+  --text-2xl: clamp(2rem, 1.6rem + 2vw, 2.75rem); /* 32–44px — page titles */
+  --text-3xl: clamp(
+    2.5rem,
+    1.9rem + 3vw,
+    3.75rem
+  ); /* 40–60px — hero headline */
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.12em; /* for Montserrat all-caps labels/eyebrows */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+}
+
+/* --------------------------------------------------------------------------
+   4. SPACING & RADIUS TOKENS
+   Kept simple and consistent — an 8px rhythm, gentle radii (premium/clean
+   per the brand's "Minimal, Modern" visual style, not sharp/brutalist).
+   -------------------------------------------------------------------------- */
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 51, 102, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 51, 102, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 51, 102, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   5. BASE / RESET
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Import Home page styles */
+@import "./Home page/Home.css";
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --------------------------------------------------------------------------
+   6. TYPOGRAPHY ELEMENTS
+   -------------------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+h1 {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-extrabold);
+}
+h2 {
+  font-size: var(--text-2xl);
+}
+h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+h4 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+}
+
+p {
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-text-secondary);
+}
+
+p.lead {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+}
+
+/* Eyebrow / overline label — Montserrat, wide tracking, the "structure" cue
+   used above section headers (e.g. "EXCHANGE" / "EXPERIENCE" / "EXPAND") */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-brand-secondary);
+  margin-bottom: var(--space-2);
+}
+
+small,
+.text-sm {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.text-xs {
+  font-size: var(--text-xs);
+  color: var(--color-gray-500);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+/* Accessible focus state across the site — never remove without replacing */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   7. UTILITY CLASSES (color & text helpers built on the tokens above)
+   -------------------------------------------------------------------------- */
+.bg-brand-primary {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-on-dark);
+}
+.bg-brand-secondary {
+  background-color: var(--color-brand-secondary);
+  color: var(--color-text-on-dark);
+}
+.bg-brand-accent {
+  background-color: var(--color-brand-accent);
+  color: var(--color-charcoal-900);
+}
+.bg-subtle {
+  background-color: var(--color-bg-subtle);
+}
+
+.text-brand-primary {
+  color: var(--color-brand-primary);
+}
+.text-brand-secondary {
+  color: var(--color-brand-secondary);
+}
+.text-brand-accent {
+  color: var(--color-orange-900);
+} /* darkened for AA contrast on white */
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+.font-accent {
+  font-family: var(--font-accent);
+}

@@ -1,0 +1,338 @@
+/* Basic e-commerce nav styles */
+.nav {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  perspective: 900px;
+}
+
+.nav {
+  perspective: 800px;
+}
+
+.nav__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  gap: 1rem;
+}
+
+.nav__container {
+  transform-style: preserve-3d;
+}
+
+.nav__logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #111827;
+  text-decoration: none;
+}
+
+.nav__center {
+  flex: 1 1 400px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.nav__search {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* push the search bar slightly to the right within the center area */
+.nav__search {
+  margin-left: auto;
+  max-width: 480px;
+}
+
+.nav__search-input {
+  flex: 1 1 auto;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  outline: none;
+}
+
+.nav__search-btn {
+  background: #111827;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 220ms ease;
+}
+
+.nav__search-btn:hover {
+  transform: translateY(-4px) translateZ(14px) rotate(-8deg) scale(1.06);
+  box-shadow: 0 12px 20px rgba(2, 6, 23, 0.16);
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__links {
+  align-items: center;
+}
+
+.nav__links a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 4px;
+  transition:
+    color 160ms ease,
+    transform 260ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 260ms ease;
+  display: inline-block;
+  transform-origin: center bottom;
+  backface-visibility: hidden;
+}
+
+.nav__links li {
+  display: flex;
+  align-items: center;
+}
+
+.nav__links a {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: #111827;
+  transition: width 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav__links a:hover::after,
+.nav__mobile-menu a:hover::after {
+  width: 100%;
+}
+
+.nav__links a:hover {
+  transform: translateY(-8px) translateZ(22px) rotateX(6deg);
+  color: #111827;
+  box-shadow: 0 14px 24px rgba(17, 24, 39, 0.12);
+}
+
+.nav__icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav__icon {
+  color: #374151;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    color 160ms ease,
+    filter 220ms ease;
+  display: inline-block;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+.nav__icon {
+  padding: 0.25rem 0.35rem;
+}
+
+.nav__icon:hover {
+  transform: translateZ(14px) rotateY(8deg) scale(1.06);
+  color: #111827;
+  filter: drop-shadow(0 10px 18px rgba(17, 24, 39, 0.12));
+}
+
+.nav__mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+}
+
+.nav__mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+  border-top: 1px solid #e6e6e6;
+}
+
+.nav__mobile-menu a {
+  text-decoration: none;
+  color: #374151;
+  padding: 0.25rem 0;
+  position: relative;
+}
+
+.nav__mobile-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: #111827;
+  transition: width 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+  .nav__center {
+    display: none;
+  }
+  .nav__links {
+    display: none;
+  }
+  .nav__mobile-toggle {
+    display: inline-flex;
+  }
+  .nav__mobile-menu {
+    display: flex;
+  }
+}
+
+/* Mobile menu animation: collapsed by default, expands when .is-open */
+.nav__mobile-menu {
+  display: none; /* default hidden on desktop via media query; shown on mobile */
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+  border-top: 1px solid #e6e6e6;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    max-height 320ms ease,
+    opacity 320ms ease,
+    transform 320ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.nav__mobile-menu.is-open {
+  max-height: 420px; /* enough to show links */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .nav__mobile-menu {
+    display: flex;
+  }
+}
+
+/* Promo topbar */
+.nav__topbar {
+  background: #111827;
+  color: #fff;
+  padding: 0.35rem 1rem;
+  font-size: 0.875rem;
+}
+
+.nav__topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav__promo a {
+  color: #f3f4f6;
+  text-decoration: underline;
+}
+
+.nav__topbar-track {
+  background: linear-gradient(180deg, #1f2937, #0b1220);
+  color: #fff;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transform-origin: center;
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 220ms ease;
+  display: inline-block;
+}
+
+.nav__topbar-track:hover {
+  transform: translateY(-6px) translateZ(14px) rotateX(3deg);
+  box-shadow: 0 12px 20px rgba(2, 6, 23, 0.18);
+  color: var(--color-golden-orange);
+  text-decoration: none;
+}
+
+/* Truck icon driving animation */
+.nav__track-icon {
+  display: inline-block;
+  margin-right: 0.45rem;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+@keyframes drive {
+  0% {
+    transform: translateX(0) rotateY(0) translateZ(0);
+  }
+  25% {
+    transform: translateX(6px) rotateY(6deg) translateZ(6px);
+  }
+  50% {
+    transform: translateX(12px) rotateY(10deg) translateZ(12px);
+  }
+  75% {
+    transform: translateX(6px) rotateY(6deg) translateZ(6px);
+  }
+  100% {
+    transform: translateX(0) rotateY(0) translateZ(0);
+  }
+}
+
+.nav__topbar-track:hover .nav__track-icon {
+  animation: drive 900ms ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+@media (max-width: 768px) {
+  .nav__topbar-inner {
+    padding: 0 0.5rem;
+  }
+  .nav__topbar-track {
+    display: none;
+  }
+}
