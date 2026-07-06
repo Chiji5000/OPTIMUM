@@ -1,16 +1,69 @@
 .checkout-page {
   min-height: calc(100vh - 150px);
   padding: 3rem 1rem 4rem;
-  background: #f5f9ff;
-  color: #12263f;
+  background: linear-gradient(145deg, #eef5ff 0%, #ffffff 100%);
+  color: #111827;
+  position: relative;
+  overflow: hidden;
+}
+
+.checkout-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.checkout-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.7;
+  animation: glowFloat 15s infinite alternate ease-in-out;
+}
+
+.glow-1 {
+  width: 280px;
+  height: 280px;
+  background: rgba(59, 130, 246, 0.24);
+  top: 10%;
+  left: 4%;
+}
+
+.glow-2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(16, 185, 129, 0.18);
+  bottom: 8%;
+  right: 10%;
+}
+
+.glow-3 {
+  width: 220px;
+  height: 220px;
+  background: rgba(168, 85, 247, 0.18);
+  top: 32%;
+  right: 25%;
+}
+
+@keyframes glowFloat {
+  to {
+    transform: translateY(-22px) translateX(16px);
+  }
 }
 
 .checkout-header {
   max-width: 980px;
   margin: 0 auto 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.checkout-subtitle {
+  margin: 0;
+  color: #4b5563;
+  font-size: 1rem;
+  max-width: 640px;
 }
 
 .checkout-eyebrow {
@@ -32,35 +85,139 @@
   margin: 0 auto 1.75rem;
   display: inline-flex;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: inset 0 0 0 1px rgba(23, 72, 128, 0.06);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(59, 130, 246, 0.14);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.05);
 }
 
 .checkout-tab {
   border: none;
   background: transparent;
   padding: 1rem 1.75rem;
-  color: #4d6d9a;
+  color: #475569;
   font-weight: 700;
   cursor: pointer;
   transition:
-    background 180ms ease,
-    color 180ms ease;
+    background 220ms ease,
+    color 220ms ease,
+    transform 220ms ease;
 }
 
 .checkout-tab.active {
   color: #0f2140;
-  background: #e8f0ff;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.18),
+    rgba(59, 130, 246, 0.08)
+  );
   border-radius: 999px;
 }
 
 .checkout-panel {
   max-width: 980px;
   margin: 0 auto;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.96);
   border-radius: 32px;
-  box-shadow: 0 32px 80px rgba(34, 79, 143, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.14);
+  box-shadow: 0 40px 100px rgba(15, 23, 42, 0.1);
   padding: 2rem;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+}
+
+.checkout-summary-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  border-radius: 28px;
+  padding: 1.75rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.summary-headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #0f2140;
+  font-weight: 700;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #4b5563;
+}
+
+.summary-row strong {
+  color: #111827;
+}
+
+.summary-row.accent {
+  color: #1d4ed8;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(59, 130, 246, 0.12);
+  color: #111827;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.summary-note {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+.checkout-slide-container {
+  position: relative;
+  min-height: 520px;
+}
+
+.checkout-slide {
+  position: absolute;
+  inset: 0;
+  padding: 0 0 0 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(20px);
+  transition:
+    opacity 320ms ease,
+    transform 320ms ease,
+    visibility 320ms ease;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.checkout-slide::-webkit-scrollbar {
+  width: 8px;
+}
+
+.checkout-slide::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.04);
+  border-radius: 999px;
+}
+
+.checkout-slide::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 999px;
+}
+
+.slide-left .checkout-slide:first-child,
+.slide-right .checkout-slide:last-child {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
 .checkout-form,
@@ -80,33 +237,84 @@
 .checkout-form input,
 .payment-fields input {
   width: 100%;
-  border: 1px solid #d7e1f2;
+  border: 1px solid rgba(59, 130, 246, 0.18);
   border-radius: 18px;
-  background: #f7faff;
-  color: #12263f;
-  padding: 0.95rem 1rem;
+  background: rgba(247, 250, 255, 0.95);
+  color: #0f172a;
+  padding: 1rem 1.1rem;
   font-size: 1rem;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.checkout-form input:hover,
+.payment-fields input:hover {
+  transform: translateY(-1px);
+}
+
+.input-field.valid input {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
+}
+
+.input-field.invalid input {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
+}
+
+.field-feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  margin-top: -0.25rem;
+}
+
+.validation-icon {
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.field-feedback.valid {
+  color: #15803d;
+}
+
+.field-feedback.invalid {
+  color: #b91c1c;
+}
+
+.validation-icon.valid {
+  color: #16a34a;
+}
+
+.validation-icon.invalid {
+  color: #dc2626;
 }
 
 .checkout-form input:focus,
 .payment-fields input:focus {
   outline: none;
-  border-color: #7ca9ff;
-  box-shadow: 0 0 0 4px rgba(124, 169, 255, 0.14);
+  border-color: rgba(59, 130, 246, 0.9);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.14);
+  transform: translateY(-2px);
 }
 
 .checkout-submit-button {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   border: none;
   border-radius: 999px;
-  padding: 1rem 1.5rem;
-  background: #2f6aff;
+  padding: 1rem 1.75rem;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
   color: #ffffff;
   cursor: pointer;
   font-weight: 700;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    filter 220ms ease;
 }
 
 .checkout-submit-button:hover {
