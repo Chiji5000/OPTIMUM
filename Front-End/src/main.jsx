@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import './App.css'
 import App from './App.jsx'
 import Preloader from './preloader/preloader.jsx';
+import { DarkModeProvider } from './darkmode/DarkModeContext.jsx';
 import { useState, useEffect } from 'react';
 
 const InitialPreloader = ({ children }) => {
@@ -28,11 +29,13 @@ const InitialPreloader = ({ children }) => {
 const Root = () => {
   return (
     <StrictMode>
-      <InitialPreloader>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </InitialPreloader>
+      <DarkModeProvider>
+        <InitialPreloader>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </InitialPreloader>
+      </DarkModeProvider>
     </StrictMode>
   );
 };

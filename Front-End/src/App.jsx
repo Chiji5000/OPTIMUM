@@ -13,13 +13,21 @@ import Cart from "./shop/item/cart/cart.jsx";
 import CheckoutDetails from "./shop/item/cart/details/Details.jsx";
 import Footer from "./footer/Footer.jsx";
 import Preloader from "./preloader/preloader.jsx";
+import ThemeToggle from "./darkmode/ThemeToggle.jsx";
+import "./darkmode/darkmode.css";
 
-// Route-based preloader wrapper
+// Route-based preloader wrapper with smooth scroll to top
 const RouteChangeTracker = () => {
   const [routeLoading, setRouteLoading] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
+    // Smooth scroll to top on route change
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    
     setRouteLoading(true);
     const timer = setTimeout(() => {
       setRouteLoading(false);
@@ -35,6 +43,7 @@ function App() {
   return (
     <>
       <RouteChangeTracker />
+      <ThemeToggle />
       <Nav />
       <main>
         <Routes>

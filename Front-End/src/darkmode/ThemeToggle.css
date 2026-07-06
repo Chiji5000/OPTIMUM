@@ -1,0 +1,175 @@
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Toggle Switch Container */
+.toggle-switch {
+  perspective: 800px;
+}
+
+/* Toggle Track */
+.toggle-track {
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(145deg, #e0e0e0, #ffffff);
+  border-radius: 15px;
+  position: relative;
+  transition: all 0.5s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+}
+
+.toggle-track.dark {
+  background: linear-gradient(145deg, #2a2a4a, #1a1a2e);
+}
+
+/* Toggle Thumb */
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #4a90d9, #2a5db8);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: rotate-glow 3s infinite ease-in-out;
+}
+
+.toggle-track.dark .toggle-thumb {
+  transform: translateX(30px);
+  background: linear-gradient(145deg, #f7b731, #f5a623);
+}
+
+/* Theme Icons */
+.theme-icon {
+  position: absolute;
+  font-size: 14px;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+}
+
+.sun-icon {
+  opacity: 1;
+  transform: scale(1);
+  animation: pulse-sun 2s infinite ease-in-out;
+}
+
+.moon-icon {
+  opacity: 0;
+  transform: scale(0);
+  position: absolute;
+}
+
+.toggle-track.dark .sun-icon {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.toggle-track.dark .moon-icon {
+  opacity: 1;
+  transform: scale(1);
+  animation: pulse-moon 2s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes rotate-glow {
+  0%, 100% {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: rotate(0deg);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(74, 144, 217, 0.4);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-sun {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    filter: drop-shadow(0 0 8px rgba(255, 199, 0, 0.6));
+  }
+}
+
+@keyframes pulse-moon {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+  }
+  50% {
+    transform: scale(1.2) rotate(-180deg);
+    filter: drop-shadow(0 0 8px rgba(247, 183, 49, 0.6));
+  }
+}
+
+/* Dark Mode Overlay Effect */
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(74, 144, 217, 0.3), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.theme-toggle:hover::before {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    padding: 12px;
+  }
+
+  .toggle-track {
+    width: 50px;
+    height: 26px;
+  }
+
+  .toggle-thumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  .toggle-track.dark .toggle-thumb {
+    transform: translateX(24px);
+  }
+}
