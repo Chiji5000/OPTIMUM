@@ -1,4 +1,5 @@
 import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./cart.css";
 
 const cartItems = [
@@ -32,6 +33,8 @@ const cartItems = [
 ];
 
 function Cart() {
+  const navigate = useNavigate();
+
   return (
     <div className="cart-page">
       <div className="cart-header">
@@ -53,26 +56,26 @@ function Cart() {
                     Color: <span>{item.color}</span>
                   </p>
                 </div>
-                <div className="cart-item-actions">
-                  <div className="cart-item-quantity">
-                    <button type="button" aria-label="Decrease quantity">
-                      <FaMinus />
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button type="button" aria-label="Increase quantity">
-                      <FaPlus />
-                    </button>
-                  </div>
-                  <button
-                    type="button"
-                    className="cart-item-delete"
-                    aria-label="Remove item"
-                  >
-                    <FaTrash />
+                <div className="cart-item-price">{item.price}</div>
+              </div>
+              <div className="cart-item-actions">
+                <button
+                  type="button"
+                  className="cart-item-delete"
+                  aria-label="Remove item"
+                >
+                  <FaTrash />
+                </button>
+                <div className="cart-item-quantity">
+                  <button type="button" aria-label="Decrease quantity">
+                    <FaMinus />
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button type="button" aria-label="Increase quantity">
+                    <FaPlus />
                   </button>
                 </div>
               </div>
-              <div className="cart-item-price">{item.price}</div>
             </article>
           ))}
         </section>
@@ -107,7 +110,11 @@ function Cart() {
             </button>
           </div>
 
-          <button className="cart-checkout-button" type="button">
+          <button
+            className="cart-checkout-button"
+            type="button"
+            onClick={() => navigate("/cart/checkout")}
+          >
             Go to Checkout
           </button>
         </aside>

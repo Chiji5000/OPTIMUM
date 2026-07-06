@@ -8,6 +8,7 @@ import ForgotPassword from "./account/ForgotPassword.jsx";
 import Shop from "./shop/Shop.jsx";
 import Item from "./shop/item/item.jsx";
 import Cart from "./shop/item/cart/cart.jsx";
+import CheckoutDetails from "./shop/item/cart/details/Details.jsx";
 import Footer from "./footer/Footer.jsx";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/item/:id" element={<Item />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/cart/checkout" element={<CheckoutDetails />} />
         </Routes>
       </main>
       <Footer />
