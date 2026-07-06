@@ -322,10 +322,39 @@
     border-color 220ms ease;
 }
 
+.shop-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255, 255, 255, 0.06),
+      transparent 25%
+    ),
+    radial-gradient(circle at 80% 80%, rgba(0, 168, 107, 0.06), transparent 20%);
+  opacity: 0;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+  transform: scale(0.98);
+  pointer-events: none;
+}
+
 .shop-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
-  border-color: rgba(15, 23, 42, 0.12);
+  transform: translateY(-4px) rotate(-0.15deg);
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.16);
+  border-color: rgba(15, 23, 42, 0.16);
+  cursor: pointer;
+}
+
+.shop-card:hover::before {
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+.shop-card:hover .shop-card-image {
+  transform: translateX(4px) translateY(-4px);
 }
 
 .shop-card-top {

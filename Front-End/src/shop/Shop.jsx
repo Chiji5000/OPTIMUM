@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaSearch, FaHeart, FaFilter, FaChevronDown } from "react-icons/fa";
 import "./Shop.css";
 
@@ -54,6 +55,7 @@ const products = [
 ];
 
 function Shop() {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("New");
 
@@ -160,11 +162,23 @@ function Shop() {
         <section className="shop-products">
           <div className="shop-grid">
             {visibleProducts.map((product) => (
-              <article key={product.id} className="shop-card">
+              <article
+                key={product.id}
+                className="shop-card"
+                role="button"
+                tabIndex={0}
+                onClick={() => navigate(`/shop/item/${product.id}`)}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    navigate(`/shop/item/${product.id}`);
+                  }
+                }}
+              >
                 <div className="shop-card-top">
                   <button
                     className="shop-wishlist-btn"
                     aria-label="Add to wishlist"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <FaHeart />
                   </button>
@@ -173,8 +187,10 @@ function Shop() {
                   <div className="shop-card-image-icon">👕</div>
                 </div>
                 <div className="shop-card-body">
-                  <p className="shop-card-meta">{product.subtitle}</p>
-                  <h3>{product.name}</h3>
+                  <div className="shop-card-link">
+                    <p className="shop-card-meta">{product.subtitle}</p>
+                    <h3>{product.name}</h3>
+                  </div>
                   <div className="shop-card-footer">
                     <span>{product.price}</span>
                     <div className="shop-card-indicators">
@@ -192,6 +208,7 @@ function Shop() {
             <span>Loading more products...</span>
           </div>
         </section>
+        
       </div>
     </div>
   );
