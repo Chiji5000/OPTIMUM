@@ -14,7 +14,10 @@ import CheckoutDetails from "./shop/item/cart/details/Details.jsx";
 import Footer from "./footer/Footer.jsx";
 import Preloader from "./preloader/preloader.jsx";
 import ThemeToggle from "./darkmode/ThemeToggle.jsx";
+import ChatbotIcon from "./chatbot/ChatbotIcon.jsx";
+import ArrowUpIcon from "./chatbot/ArrowUpIcon.jsx";
 import "./darkmode/darkmode.css";
+import "./chatbot/ChatbotIcon.css";
 
 // Route-based preloader wrapper with smooth scroll to top
 const RouteChangeTracker = () => {
@@ -44,6 +47,8 @@ function App() {
     <>
       <RouteChangeTracker />
       <ThemeToggle />
+      <ChatbotIcon />
+      <ArrowUpIcon />
       <Nav />
       <main>
         <Routes>
