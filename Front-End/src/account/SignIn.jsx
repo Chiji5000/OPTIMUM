@@ -3,18 +3,12 @@ import { Link } from "react-router-dom";
 import "./SignIn.css";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 function SignIn() {
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
   const [errors, setErrors] = useState({ email: "", password: "" });
   const [submitted, setSubmitted] = useState(false);
-
-  const isEmailValid = emailRegex.test(email);
-  const isPasswordValid = passwordRegex.test(password);
 
   function validateEmail(value) {
     if (!value) return "Email is required.";
@@ -24,8 +18,7 @@ function SignIn() {
 
   function validatePassword(value) {
     if (!value) return "Password is required.";
-    if (!passwordRegex.test(value))
-      return "Password must be 8+ chars, include uppercase, lowercase, and a number.";
+    if (value.length < 8) return "Password must be at least 8 characters.";
     return "";
   }
 
@@ -43,6 +36,7 @@ function SignIn() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
     const nextErrors = {
       email: validateEmail(email),
       password: validatePassword(password),
@@ -52,10 +46,12 @@ function SignIn() {
     setSubmitted(true);
 
     if (!nextErrors.email && !nextErrors.password) {
-      // placeholder for form submission
-      console.log("Signing in", { email, password, remember });
+      console.log("Signing in", { email, password });
     }
   }
+
+  const emailValid = email && !errors.email;
+  const passwordValid = password && !errors.password;
 
   return (
     <div className="signin-page">
@@ -68,95 +64,82 @@ function SignIn() {
       <div className="signin-card">
         <div className="signin-header">
           <p className="signin-eyebrow">Welcome back</p>
-          <h1>Sign in to your account</h1>
+          <h1>Sign in to continue.</h1>
           <p className="signin-subtitle">
-            Enter your details below to access your dashboard and shopping.
+            Access your account, view orders, and keep your cart ready to check
+            out.
           </p>
         </div>
 
         <form className="signin-form" onSubmit={handleSubmit} noValidate>
-          <label className="signin-label">
-            Email address
+          <div className="signin-field">
+            <label className="signin-label" htmlFor="loginEmail">
+              Email address
+            </label>
             <div className="signin-input-group">
               <input
+                id="loginEmail"
                 type="email"
-                placeholder="you@example.com"
                 value={email}
+                placeholder="you@example.com"
                 onChange={handleEmailChange}
                 className={`signin-input ${errors.email ? "error" : ""}`}
                 aria-invalid={!!errors.email}
-                aria-describedby="email-error"
+                aria-describedby="loginEmail-error"
               />
               {(email || submitted) && (
                 <span
-                  className={`signin-validation-icon ${
-                    isEmailValid ? "valid" : "invalid"
-                  }`}
+                  className={`signin-validation-icon ${emailValid ? "valid" : "invalid"}`}
                 >
-                  {isEmailValid ? "✓" : "✕"}
+                  {emailValid ? "✓" : "✕"}
                 </span>
               )}
             </div>
-            <span id="email-error" className="signin-error">
+            <span id="loginEmail-error" className="signin-error">
               {(submitted || email) && errors.email}
             </span>
-          </label>
+          </div>
 
-          <label className="signin-label">
-            Password
-            <div className="signin-input-group signin-password-row">
+          <div className="signin-field">
+            <label className="signin-label" htmlFor="loginPassword">
+              Password
+            </label>
+            <div className="signin-input-group">
               <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
+                id="loginPassword"
+                type="password"
                 value={password}
+                placeholder="Enter your password"
                 onChange={handlePasswordChange}
                 className={`signin-input ${errors.password ? "error" : ""}`}
                 aria-invalid={!!errors.password}
-                aria-describedby="password-error"
+                aria-describedby="loginPassword-error"
               />
-              <button
-                type="button"
-                className="signin-password-toggle"
-                onClick={() => setShowPassword((value) => !value)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
               {(password || submitted) && (
                 <span
-                  className={`signin-validation-icon ${
-                    isPasswordValid ? "valid" : "invalid"
-                  }`}
+                  className={`signin-validation-icon ${passwordValid ? "valid" : "invalid"}`}
                 >
-                  {isPasswordValid ? "✓" : "✕"}
+                  {passwordValid ? "✓" : "✕"}
                 </span>
               )}
             </div>
-            <span id="password-error" className="signin-error">
+            <span id="loginPassword-error" className="signin-error">
               {(submitted || password) && errors.password}
             </span>
-          </label>
-
-          <div className="signin-actions">
-            <label className="signin-remember">
-              <input
-                type="checkbox"
-                checked={remember}
-                onChange={(event) => setRemember(event.target.checked)}
-              />
-              Remember me
-            </label>
-            <Link to="/forgot-password" className="signin-forgot">
-              Forgot password?
-            </Link>
           </div>
 
           <button className="signin-submit" type="submit">
             Sign in
           </button>
 
-          <p className="signin-footer">
-            New here? <Link to="/signup">Create an account</Link>
-          </p>
+          <div className="signin-footer">
+            <p>
+              New here? <Link to="/signup">Create an account</Link>
+            </p>
+            <p>
+              <Link to="/forgot-password">Forgot password?</Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>

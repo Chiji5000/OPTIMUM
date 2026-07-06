@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FaTwitter,
   FaFacebookF,
@@ -85,7 +86,9 @@ export default function Footer() {
             <ul>
               <li>About</li>
               <li>Features</li>
-              <li>Works</li>
+              <li>
+                <Link to="/admin">Admin</Link>
+              </li>
               <li>Career</li>
             </ul>
           </div>

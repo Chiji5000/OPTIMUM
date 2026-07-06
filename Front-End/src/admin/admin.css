@@ -1,0 +1,138 @@
+:root {
+  --admin-bg: #071022;
+  --admin-panel: rgba(14, 35, 72, 0.92);
+  --admin-border: rgba(109, 143, 255, 0.24);
+  --admin-text: #e9f0ff;
+  --admin-subtle: #b5c7ff;
+  --admin-accent: #4f9bff;
+}
+
+.admin-page {
+  min-height: calc(100vh - 150px);
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(79, 155, 255, 0.18),
+      transparent 32%
+    ),
+    linear-gradient(180deg, #071022 0%, #06151f 100%);
+  color: var(--admin-text);
+}
+
+.admin-panel {
+  width: min(480px, 100%);
+  background: var(--admin-panel);
+  border: 1px solid var(--admin-border);
+  border-radius: 28px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.admin-brand {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.admin-logo {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-tagline {
+  margin: 0.75rem auto 0;
+  max-width: 32rem;
+  color: var(--admin-subtle);
+  line-height: 1.75;
+}
+
+.admin-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.admin-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.admin-field label {
+  color: var(--admin-subtle);
+  font-size: 0.95rem;
+}
+
+.admin-field input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--admin-text);
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.admin-field input:focus {
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 0 4px rgba(79, 155, 255, 0.12);
+}
+
+.admin-field input.error {
+  border-color: #ff6b6b;
+}
+
+.admin-error {
+  min-height: 1.25rem;
+  font-size: 0.9rem;
+  color: #ff9fa7;
+}
+
+.admin-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 1.15rem;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #4f9bff 0%, #2d6eff 100%);
+  color: #ffffff;
+  font-family: var(--font-accent);
+  font-size: 1rem;
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+.admin-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(79, 155, 255, 0.24);
+}
+
+.admin-note {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--admin-subtle);
+  text-align: center;
+}
+
+.admin-note a {
+  color: var(--admin-accent);
+  text-decoration: none;
+}
+
+.admin-note a:hover {
+  text-decoration: underline;
+}
